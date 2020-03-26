@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <input type="text" id="navn_forfatter" placeholder="Navn på forfatter">
+    <input type="text" id="tittel_bok" placeholder="Boktittel">
+    <input type="text" id="navn_forlag" placeholder="Forlagsnavn">
+    <input type="button" onclick="submit_data()" value="Send inn data">
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDBd5WR_7scJZYIEX40kNUKsrsg4-gJ1JY",
+        authDomain: "bibliotek-prosjekt.firebaseapp.com",
+        databaseURL: "https://bibliotek-prosjekt.firebaseio.com",
+        projectId: "bibliotek-prosjekt",
+        storageBucket: "bibliotek-prosjekt.appspot.com",
+        messagingSenderId: "174377339983",
+        appId: "1:174377339983:web:890c074ecb4af63a712e3a"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      let db = firebase.database();
+      let bibliotek = db.ref("bibliotek");
+
+      function submit_data(){
+        let forfatter_in = document.getElementById('navn_forfatter').value;
+        let tittel_in = document.getElementById('tittel_bok').value;
+        let forlag_in = document.getElementById('navn_forlag').value;
+        bibliotek.push({
+          forfatter_navn : forfatter_in,
+          tittel : tittel_in,
+          forlag : forlag_in
+        });
+        window.alert("Dataen din er lagt til");
+      }
+    </script>
+  </body>
+</html>
